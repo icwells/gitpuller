@@ -17,14 +17,19 @@ var (
 	status = kingpin.Command("status", "Checks status of all repositories.")
 )
 
-func (p *puller) pullRepos() {
+func pullRepos() {
 	// Pulls all given repositories
+	p := newPuller(false)
 	for _, r := range p.repos {
 		_ = os.Chdir(r)
-		_, err := exec.Command("git pull").Output()
+		gp := exec.Command("git", "pull")
+		err := gp.Run()
 		if err != nil {
 			log.Fatal(err)
 		}
+		//if strings.Contains(string(out), "Username") == true {
+
+		//}
 	}
 }
 
@@ -39,27 +44,27 @@ func filterStatus(status string) bool {
 	return ret
 }
 
-func (p *puller) getStatus() {
+func getStatus() {
 	// Prints statuses for any repos which need to be committed/pushed
+	p := newPuller(false)
 	for _, r := range p.repos {
 		_ = os.Chdir(r)
-		out, err := exec.Command("git status").Output()
+		out, err := exec.Command("git", "status").Output()
 		if err != nil {
 			log.Fatal(err)
 		}
 		stdout := string(out)
 		if filterStatus(stdout) == true {
-			fmt.Print("\n", stdout, "\n")
+			fmt.Printf("\n%s\n%s\t------------------------------------\n", r, stdout)
 		}
 	}
 }
 
 func main() {
-	puller := newPuller()
 	switch kingpin.Parse() {
 	case pull.FullCommand():
-		puller.pullRepos()
+		pullRepos()
 	case status.FullCommand():
-		puller.getStatus()
+		getStatus()
 	}
 }
