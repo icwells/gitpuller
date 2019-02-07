@@ -1,6 +1,6 @@
 // Performs git pull for all given repositories
 
-package gitpuller
+package main
 
 import (
 	"fmt"
