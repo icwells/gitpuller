@@ -22,14 +22,12 @@ func pullRepos() {
 	p := newPuller(false)
 	for _, r := range p.repos {
 		_ = os.Chdir(r)
-		gp := exec.Command("git", "pull")
-		err := gp.Run()
+		out, err := exec.Command("git", "pull").Output()
 		if err != nil {
 			log.Fatal(err)
 		}
-		//if strings.Contains(string(out), "Username") == true {
-
-		//}
+		fmt.Println(r)
+		fmt.Println(string(out))
 	}
 }
 

@@ -9,7 +9,6 @@
 IO="github.com/icwells/go-tools/iotools"
 KP="gopkg.in/alecthomas/kingpin.v2"
 MAIN="gitpuller"
-PR="github.com/Songmu/prompter"
 
 # Get install location
 SYS=$(ls $GOPATH/pkg | head -1)
@@ -21,7 +20,7 @@ echo "GOPATH identified as $GOPATH"
 echo ""
 
 # Get dependencies
-for I in $IO $KP $PR ; do
+for I in $IO $KP ; do
 	if [ ! -e "$PDIR/$I.a" ]; then
 		echo "Installing $I..."
 		go get -u $I
