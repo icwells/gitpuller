@@ -20,6 +20,8 @@ The config file contains a list of usernames for private repositories and a list
 
 Make a file in your bin directory named "config.txt". Simply list the paths to the git repostories you want to manage with gitpuller (one per line).
 
+The binary and config file are in the bin directory by default, but you can put them anywhere as long as they are in the same directory.  
+
 ## Usage  
 gitpuller pull  
 gitpuller status  
