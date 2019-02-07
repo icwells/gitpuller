@@ -1,6 +1,6 @@
 // Defines puller struct and methods
 
-package main
+package gitpuller
 
 import (
 	"fmt"

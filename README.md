@@ -10,19 +10,18 @@ Copyright 2019 by Shawn Rupp
 
 
 ## Installation  
-Just run install.sh. It will download any necesarry dependencies.  
 
-	./install.sh  
+	go install -i github.com/icwells/gitpuller  
 
 ## Config  
 The config file contains a list of usernames for private repositories and a list of target repsories on the local machine.  
 
-Make a file in the bin directory named "config.txt". Simply list the paths to the 
+Make a file in your $GOPATH/src/github.com/icwells/gitpuller directory named "config.txt". Simply list the paths to the 
 git repostories you want to manage with gitpuller (one per line).
 
 ## Usage  
-./gitpuller pull  
-./gitpuller status  
+gitpuller pull  
+gitpuller status  
 
 That's it.  
 
