@@ -4,6 +4,7 @@ package gitpuller
 
 import (
 	"fmt"
+	"github.com/Songmu/prompter"
 	"github.com/icwells/go-tools/iotools"
 	"os"
 	"path"
@@ -17,6 +18,7 @@ type puller struct {
 
 func (p *puller) setRepos(credentials bool) {
 	// Sets input from config file
+	r := false
 	f := iotools.OpenFile(p.config)
 	defer f.Close()
 	scanner := iotools.GetScanner(f)
