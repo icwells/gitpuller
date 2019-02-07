@@ -1,5 +1,4 @@
 # gitpuller is a simple Go program to keep your git repositories upt to date.  
-This script is still under developement.  
 
 Copyright 2019 by Shawn Rupp
 
