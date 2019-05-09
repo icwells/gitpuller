@@ -28,7 +28,7 @@ for I in $IO $KP $PR ; do
 	fi
 done
 
-go build -o bin/$MAIN src/*.go
+go build -o $GOBIN/$MAIN src/*.go
 
 echo "Finished"
 echo ""

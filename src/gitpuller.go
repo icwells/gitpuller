@@ -15,11 +15,13 @@ var (
 	app    = kingpin.New("gitpuller", "Simple status manager for git repositories.")
 	pull   = kingpin.Command("pull", "Performs git pull for all given repositories.")
 	status = kingpin.Command("status", "Checks status of all repositories.")
+
+	config = "config.txt"
 )
 
 func pullRepos() {
 	// Pulls all given repositories
-	p := newPuller(false)
+	p := newPuller()
 	for _, r := range p.repos {
 		_ = os.Chdir(r)
 		out, err := exec.Command("git", "pull").Output()
@@ -44,7 +46,7 @@ func filterStatus(status string) bool {
 
 func getStatus() {
 	// Prints statuses for any repos which need to be committed/pushed
-	p := newPuller(false)
+	p := newPuller()
 	for _, r := range p.repos {
 		_ = os.Chdir(r)
 		out, err := exec.Command("git", "status").Output()

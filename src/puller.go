@@ -15,7 +15,7 @@ type puller struct {
 	repos  []string
 }
 
-func (p *puller) setRepos(credentials bool) {
+func (p *puller) setRepos() {
 	// Sets input from config file
 	f := iotools.OpenFile(p.config)
 	defer f.Close()
@@ -31,19 +31,17 @@ func (p *puller) setRepos(credentials bool) {
 
 func (p *puller) setConfig() {
 	// Locates config file
-	ex, _ := os.Executable()
-	pt, _ := path.Split(ex)
-	p.config = path.Join(pt, "config.txt")
+	p.config = path.Join(iotools.GetGOPATH(), "src/github.com/icwells/gitpuller", config)
 	if iotools.Exists(p.config) == false {
 		fmt.Print("\n\t[Error] Cannot find config file. Exiting.\n")
 		os.Exit(1)
 	}
 }
 
-func newPuller(credentials bool) puller {
+func newPuller() puller {
 	// Initializes new puller
 	var p puller
 	p.setConfig()
-	p.setRepos(credentials)
+	p.setRepos()
 	return p
 }
