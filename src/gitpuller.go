@@ -23,12 +23,12 @@ func pullRepos() {
 	// Pulls all given repositories
 	p := newPuller()
 	for _, r := range p.repos {
+		fmt.Println(r)
 		_ = os.Chdir(r)
 		out, err := exec.Command("git", "pull").Output()
 		if err != nil {
 			log.Fatal(err)
 		}
-		fmt.Println(r)
 		fmt.Println(string(out))
 	}
 }
@@ -38,7 +38,7 @@ func filterStatus(status string) bool {
 	ret := true
 	msg1 := "Your branch is up to date with "
 	msg2 := "nothing to commit, working tree clean"
-	if strings.Contains(status, msg1) == true && strings.Contains(status, msg2) == true {
+	if strings.Contains(status, msg1) && strings.Contains(status, msg2) {
 		ret = false
 	}
 	return ret
